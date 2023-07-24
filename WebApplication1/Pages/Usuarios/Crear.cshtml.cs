@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Agenda6.Modelos;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.CodeAnalysis.Scripting;
 
 namespace Agenda6.Pages.Usuarios
 {
@@ -25,9 +26,9 @@ namespace Agenda6.Pages.Usuarios
             
             Roles = new List<SelectListItem>
             {
-                new SelectListItem{ Value = "1", Text = "Admin"},
-                new SelectListItem{ Value = "2", Text = "Ventas"},
-                new SelectListItem{ Value = "3", Text = "IT"},
+                new SelectListItem{ Value = "Admin", Text = "Admin"},
+                new SelectListItem{ Value = "Ventas", Text = "Ventas"},
+                new SelectListItem{ Value = "IT", Text = "IT"},
              };
         }
 
@@ -36,8 +37,10 @@ namespace Agenda6.Pages.Usuarios
             if (!ModelState.IsValid)
             {
                 return Page();
-
             }
+
+            Usuario.Password = BCrypt.Net.BCrypt.HashPassword(Usuario.Password);
+
             Usuario.FechaCreacion = DateTime.Now;
             _contexto.Add(Usuario);
             await _contexto.SaveChangesAsync();
