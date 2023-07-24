@@ -1,0 +1,68 @@
+﻿@page
+@model Agenda6.Pages.Contactos.IndexModel
+@{
+    ViewData["Title"] = "Lista de Contactos";
+}
+
+<h3 class="text-center">Mira mas cursos de Render 2 Web</h3>
+
+@if (Model.Mensaje != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @Model.Mensaje
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-sm-8">
+                <h2 class="text-info">Lista de contactos</h2>
+            </div>
+            <div class="col-sm-4 mt-8  align-self-end">
+                <a asp-page="Crear" class="btn btn-primary mt-4">Crear Nuevo Contacto</a>
+            </div>
+        </div>
+
+    </div>
+    <div class="card-body">
+        <form method="post">
+            @if (Model.Contactos.Count() > 0)
+            {
+                <br />
+
+                <br />
+                <table class="table table-striped border">
+                    <tr class="table-secondary">
+                        <th>@Html.DisplayNameFor(m => m.Contactos.First().Id )</th>
+                        <th>@Html.DisplayNameFor(m => m.Contactos.First().Nombre )</th>
+                        <th>@Html.DisplayNameFor(m => m.Contactos.First().Email )</th>
+                        <th>@Html.DisplayNameFor(m => m.Contactos.First().Telefono )</th>
+                        <th>@Html.DisplayNameFor(m => m.Contactos.First().FechaCreacion )</th>
+                        <th>Acciones</th>
+                    </tr>
+                    @foreach (var item in Model.Contactos)
+                    {
+
+                        <tr>
+                            <td>@Html.DisplayFor(m => item.Id )</td>
+                            <td>@Html.DisplayFor(m => item.Nombre )</td>
+                            <td>@Html.DisplayFor(m => item.Email )</td>
+                            <td>@Html.DisplayFor(m => item.Telefono )</td>
+                            <td>@Html.DisplayFor(m => item.FechaCreacion )</td>
+                            <td>
+                                <a asp-route-id="@item.Id" asp-page="Editar" class="btn btn-success btn-sm">Editar</a>
+                                <button asp-page-handler="Borrar" asp-route-id="@item.Id" onclick="return confirm('Esta seguro de querer borrar el curso?')" class="btn btn-danger">Borrar</button>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+            else
+            {
+                <p>No hay Contactos disponibles</p>
+            }
+        </form>
+    </div>
+</div>

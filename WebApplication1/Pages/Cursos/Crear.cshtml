@@ -1,0 +1,59 @@
+﻿@page
+@model Agenda6.Pages.Cursos.CrearModel
+@{
+    ViewData["Title"] = "Crear nuevos cursos";
+}
+}
+<div class="card">
+    <div class="card-header">
+
+        <h2 class="text-info">Crear un nuevo curso</h2>
+
+    </div>
+    <div class="card-body">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="container" style="padding:30px">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label asp-for="Curso.NombreCurso"></label>
+                        </div>
+                        <div class="col-sm-6">
+                            <input asp-for="Curso.NombreCurso" class="form-control" />
+                        </div>
+                        <span asp-validation-for="Curso.NombreCurso" class="text-danger"></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label asp-for="Curso.CantidadClases"></label>
+                        </div>
+                        <div class="col-sm-6">
+                            <input asp-for="Curso.CantidadClases" class="form-control" />
+                        </div>
+                        <span asp-validation-for="Curso.CantidadClases" class="text-danger"></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label asp-for="Curso.Precio"></label>
+                        </div>
+                        <div class="col-sm-6">
+                            <input asp-for="Curso.Precio" class="form-control" />
+                        </div>
+                        <span asp-validation-for="Curso.Precio" class="text-danger"></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2 offset-sm-2">
+                            <input type="submit" value="Crear" class="btn btn-primary form-control" />
+                        </div>
+                        <div class="col-sm-4">
+                            <a asp-page="Index" class="btn btn-info form-control">Volver a lista</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>

@@ -1,0 +1,83 @@
+﻿@page
+@model Agenda6.Pages.Contactos.CrearModel
+@{
+    ViewData["Title"] = "Crear nuevos contactos";
+}
+}
+<div class="card">
+    <div class="card-header">
+
+        <h2 class="text-info">Editar un nuevo curso</h2>
+
+    </div>
+    <div class="card-body">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- Se envía campo oculto -->
+
+            <input type="hidden" asp-for="ContactoVM.Contacto.Id" />
+
+            <div class="container" style="padding:30px">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label asp-for="ContactoVM.Contacto.Nombre"></label>
+                        </div>
+                        <div class="col-sm-6">
+                            <input asp-for="ContactoVM.Contacto.Nombre" class="form-control" />
+                        </div>
+                        <span asp-validation-for="ContactoVM.Contacto.Nombre" class="text-danger"></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label asp-for="ContactoVM.Contacto.Email"></label>
+                        </div>
+                        <div class="col-sm-6">
+                            <input asp-for="ContactoVM.Contacto.Email" class="form-control" />
+                        </div>
+                        <span asp-validation-for="ContactoVM.Contacto.Email" class="text-danger"></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label asp-for="ContactoVM.Contacto.Telefono"></label>
+                        </div>
+                        <div class="col-sm-6">
+                            <input asp-for="ContactoVM.Contacto.Telefono" class="form-control" />
+                        </div>
+                        <span asp-validation-for="ContactoVM.Contacto.Telefono" class="text-danger"></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label asp-for="ContactoVM.Contacto.Categoria"></label>
+                        </div>
+                        <div class="col-sm-6">
+                            <select asp-for="ContactoVM.Contacto.CategoriaId" asp-items="@(new SelectList(Model.ContactoVM.ListaCategorias, "Id", "Nombre"))" class="form-control">
+                            </select>
+                        </div>
+                        <span asp-validation-for="ContactoVM.Contacto.Categoria" class="text-danger"></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label asp-for="ContactoVM.Contacto.FechaCreacion"></label>
+                        </div>
+                        <div class="col-sm-6">
+                            <input asp-for="ContactoVM.Contacto.FechaCreacion" class="form-control" />
+                        </div>
+                        <span asp-validation-for="ContactoVM.Contacto.FechaCreacion" class="text-danger"></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2 offset-sm-2">
+                            <input type="submit" value="Crear Contacto" class="btn btn-primary form-control" />
+                        </div>
+                        <div class="col-sm-4">
+                            <a asp-page="Index" class="btn btn-info form-control">Volver a lista</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
