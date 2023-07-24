@@ -1,9 +1,9 @@
-using Agenda6.Modelos.ViewModels;
-using Agenda6.Modelos;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-
+using Agenda6.Modelos.ViewModels;
+using Agenda6.Modelos;
 namespace Agenda6.Pages.Contactos
 {
     public class CrearModel : PageModel
@@ -18,13 +18,11 @@ namespace Agenda6.Pages.Contactos
         }
         [BindProperty]
 
-
-      
-
+        public CrearContactoVM ContactoVM { get; set; }
         [TempData]
         public string Mensaje { get; set; }
       
-        public CrearContactoVM ContactoVM { get; set; }
+        
         public async Task<IActionResult> OnGet()
         {
             ContactoVM = new CrearContactoVM()

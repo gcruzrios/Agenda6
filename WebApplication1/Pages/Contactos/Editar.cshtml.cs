@@ -15,11 +15,11 @@ namespace Agenda6.Pages.Contactos
 
         }
         [BindProperty]
-      
+        public CrearContactoVM ContactoVM { get; set; }
         [TempData]
         public string Mensaje { get; set; }
 
-        public CrearContactoVM ContactoVM { get; set; }
+       
 
         public async Task<IActionResult> OnGet(int id)
         {
@@ -46,7 +46,7 @@ namespace Agenda6.Pages.Contactos
                 ContactoDesdeBD.CategoriaId = ContactoVM.Contacto.CategoriaId;
                 ContactoDesdeBD.FechaCreacion = ContactoVM.Contacto.FechaCreacion;
                 await _contexto.SaveChangesAsync();
-                Mensaje = "Curso editado correctamente";
+                Mensaje = "Contacto editado correctamente";
                 //return RedirectToPage("Index");
             }
 
