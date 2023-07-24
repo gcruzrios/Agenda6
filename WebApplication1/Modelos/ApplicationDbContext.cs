@@ -18,5 +18,6 @@ namespace Agenda6.Modelos
         public DbSet<Curso> Curso { get; set; }
         public DbSet<Categoria> Categoria { get; set; }
         public DbSet<Contacto> Contacto { get; set; }
+        public DbSet<Usuario> Usuario { get; set; }
     }
 }
