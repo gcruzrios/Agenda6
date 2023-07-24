@@ -7,9 +7,9 @@ namespace Agenda6.Modelos.ViewModels
 {
     public class CrearContactoVM
     {
-        public List<Categoria>? ListaCategorias { get; set; }
+        public List<Categoria> ListaCategorias { get; set; }
 
-        public Contacto? Contacto { get; set; }
+        public Contacto Contacto { get; set; }
 
     }
 

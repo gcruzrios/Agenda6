@@ -33,7 +33,7 @@ namespace Agenda6.Pages.Contactos
                 Contacto = new Modelos.Contacto()
 
             };
-            return Page();
+           return Page();
         }
 
         public async Task<IActionResult> OnPost()
@@ -44,7 +44,8 @@ namespace Agenda6.Pages.Contactos
 
             }
             ContactoVM.Contacto.FechaCreacion = DateTime.Now;
-            _contexto.Add(ContactoVM.Contacto);
+            //_contexto.Add(ContactoVM.Contacto);
+            await _contexto.Contacto.AddAsync(ContactoVM.Contacto);
             await _contexto.SaveChangesAsync();
             Mensaje = "Contacto creado correctamente";
             return RedirectToPage("Index");
