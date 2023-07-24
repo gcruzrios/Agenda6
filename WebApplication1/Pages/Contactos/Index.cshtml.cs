@@ -20,7 +20,7 @@ namespace Agenda6.Pages.Contactos
 
         public async Task OnGet()
         {
-            Contactos = await _contexto.Contacto.ToListAsync();
+            Contactos = await _contexto.Contacto.Include(c => c.Categoria).ToListAsync();
         }
 
         public async Task<IActionResult> OnPostBorrar(int id)

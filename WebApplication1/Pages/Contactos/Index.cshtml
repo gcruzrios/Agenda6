@@ -40,7 +40,8 @@
                         <th>@Html.DisplayNameFor(m => m.Contactos.First().Email )</th>
                         <th>@Html.DisplayNameFor(m => m.Contactos.First().Telefono )</th>
                         <th>@Html.DisplayNameFor(m => m.Contactos.First().FechaCreacion )</th>
-                        <th>Acciones</th>
+                        <th>@Html.DisplayNameFor(m => m.Contactos.First().Categoria)</th>
+                        <th></th>
                     </tr>
                     @foreach (var item in Model.Contactos)
                     {
@@ -51,9 +52,10 @@
                             <td>@Html.DisplayFor(m => item.Email )</td>
                             <td>@Html.DisplayFor(m => item.Telefono )</td>
                             <td>@Html.DisplayFor(m => item.FechaCreacion )</td>
+                            <td>@Html.DisplayFor(m => item.Categoria.Nombre)</td>
                             <td>
                                 <a asp-route-id="@item.Id" asp-page="Editar" class="btn btn-success btn-sm">Editar</a>
-                                <button asp-page-handler="Borrar" asp-route-id="@item.Id" onclick="return confirm('Esta seguro de querer borrar el curso?')" class="btn btn-danger">Borrar</button>
+                                <button asp-page-handler="Borrar" asp-route-id="@item.Id" onclick="return confirm('Esta seguro de querer borrar el contacto?')" class="btn btn-danger">Borrar</button>
                             </td>
                         </tr>
                     }
