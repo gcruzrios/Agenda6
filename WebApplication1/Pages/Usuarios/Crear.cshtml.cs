@@ -38,8 +38,8 @@ namespace Agenda6.Pages.Usuarios
             {
                 return Page();
             }
-
-            Usuario.Password = BCrypt.Net.BCrypt.HashPassword(Usuario.Password);
+            int salt = 12;
+            Usuario.Password = BCrypt.Net.BCrypt.HashPassword(Usuario.Password,salt);
 
             Usuario.FechaCreacion = DateTime.Now;
             _contexto.Add(Usuario);

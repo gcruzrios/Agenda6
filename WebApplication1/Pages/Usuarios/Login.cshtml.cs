@@ -18,6 +18,8 @@ namespace Agenda6.Pages.Usuarios
         public Usuario Usuario { get; set; }
         public string PasswordVerificado { get; set; }
         public bool Verificado { get; set; }
+        public string storedPassword { get; set; }
+
         [TempData]
         public string Mensaje { get; set; }
         public void OnGet()
@@ -35,24 +37,26 @@ namespace Agenda6.Pages.Usuarios
 
             {
 
-                
 
-                //  PasswordVerificado = BCrypt.Net.BCrypt.HashPassword(Usuario.Password);
+
+                //bool verified = BCrypt.Net.BCrypt.Verify("Pa$$w0rd", passwordHash);
 
 
                 //var UsuarioDesdeBD = await _contexto.Usuario.FindAsync(Usuario.NombreUsuario);
-                
-               
+
+
                 var UsuarioDesdeBD = _contexto.Usuario.FirstOrDefault(acc => acc.NombreUsuario == Usuario.NombreUsuario);
 
-
-                UsuarioDesdeBD.NombreUsuario = Usuario.NombreUsuario;
-                UsuarioDesdeBD.Password = Usuario.Password;
-
+                storedPassword = UsuarioDesdeBD.Password;
+               
+                
+                //int salt = 12;
+                //string passwordHash = BCrypt.Net.BCrypt.HashPassword(enteredpassword, salt);
+                //bool correctPassword = BCrypt.Net.BCrypt.Verify(storedPassword, passwordHash);
 
                 int salt = 12;
                 string passwordHash = BCrypt.Net.BCrypt.HashPassword(Usuario.Password, salt);
-                bool correctPassword = BCrypt.Net.BCrypt.Verify(UsuarioDesdeBD.Password, passwordHash);
+                bool correctPassword = BCrypt.Net.BCrypt.Verify(storedPassword, passwordHash);
 
                 //bool Verificado = BCrypt.Net.BCrypt.Verify(Usuario.Password, UsuarioDesdeBD.Password);
 
