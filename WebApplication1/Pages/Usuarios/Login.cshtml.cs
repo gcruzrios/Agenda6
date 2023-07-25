@@ -14,23 +14,45 @@ namespace Agenda6.Pages.Usuarios
             _contexto = contexto;
 
         }
+        [BindProperty]
         public Usuario Usuario { get; set; }
         public string PasswordVerificado { get; set; }
+        public bool Verificado { get; set; }
+        [TempData]
         public string Mensaje { get; set; }
         public void OnGet()
         {
         }
         public async Task<IActionResult> OnPost()
+
         {
-            PasswordVerificado = BCrypt.Net.BCrypt.HashPassword(Usuario.Password);
+                       
 
             if (ModelState.IsValid)
+
+
+
+
             {
-                var UsuarioDesdeBD = await _contexto.Usuario.FindAsync(Usuario.NombreUsuario);
+
+                
+
+                //  PasswordVerificado = BCrypt.Net.BCrypt.HashPassword(Usuario.Password);
+
+
+                //var UsuarioDesdeBD = await _contexto.Usuario.FindAsync(Usuario.NombreUsuario);
+                
+               
+                var UsuarioDesdeBD = _contexto.Usuario.FirstOrDefault(acc => acc.NombreUsuario == Usuario.NombreUsuario);
+
+
                 UsuarioDesdeBD.NombreUsuario = Usuario.NombreUsuario;
                 UsuarioDesdeBD.Password = Usuario.Password;
 
-                if (UsuarioDesdeBD.Password == PasswordVerificado)
+                bool Verificado = BCrypt.Net.BCrypt.Verify(Usuario.Password, UsuarioDesdeBD.Password);
+
+
+                if (Verificado)
                 {
 
                 }                  
