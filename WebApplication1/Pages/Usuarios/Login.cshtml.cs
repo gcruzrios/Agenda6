@@ -49,10 +49,15 @@ namespace Agenda6.Pages.Usuarios
                 UsuarioDesdeBD.NombreUsuario = Usuario.NombreUsuario;
                 UsuarioDesdeBD.Password = Usuario.Password;
 
-                bool Verificado = BCrypt.Net.BCrypt.Verify(Usuario.Password, UsuarioDesdeBD.Password);
+
+                int salt = 12;
+                string passwordHash = BCrypt.Net.BCrypt.HashPassword(Usuario.Password, salt);
+                bool correctPassword = BCrypt.Net.BCrypt.Verify(UsuarioDesdeBD.Password, passwordHash);
+
+                //bool Verificado = BCrypt.Net.BCrypt.Verify(Usuario.Password, UsuarioDesdeBD.Password);
 
 
-                if (Verificado)
+                if (correctPassword)
                 {
 
                 }                  
@@ -73,7 +78,7 @@ namespace Agenda6.Pages.Usuarios
 
 
             Mensaje = "Usuario ingresado correctamente";
-            return RedirectToPage("Home");
+            return RedirectToPage("/Home");
 
 
         }
