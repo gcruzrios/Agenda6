@@ -1,0 +1,56 @@
+﻿@page
+@model Agenda6.Pages.Usuarios.LoginModel
+@{
+    ViewData["Title"] = "Login de Usuario";
+}
+
+<div class="card">
+    <div class="card-header">
+
+        <h2 class="text-info">Ingresar al Sistema</h2>
+
+    </div>
+    <div class="card-body">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- Se envía campo oculto -->
+
+
+
+            <div class="container" style="padding:30px">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-2 mb-4">
+                            <label>Username</label>
+                        </div>
+                        <div class="col-sm-4 mb-4">
+                            <input asp-for="Usuario.NombreUsuario" class="form-control" />
+                        </div>
+                        <span asp-validation-for="Usuario.NombreUsuario" class="text-danger"></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2 mb-4">
+                            <label>Contraseña</label>
+                        </div>
+                        <div class="col-sm-4 mb-4">
+                            <input asp-for="Usuario.Password" type="password" class="form-control" />
+                        </div>
+                        <span asp-validation-for="Usuario.Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-2 offset-sm-2">
+                            <input type="submit" value="Login" class="btn btn-primary form-control" />
+                        </div>
+                        <div class="col-sm-2">
+                            <a asp-page="Index" class="btn btn-info form-control">Cancelar</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
