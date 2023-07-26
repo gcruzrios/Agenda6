@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Agenda6.Modelos;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.CodeAnalysis.Scripting;
+using Microsoft.EntityFrameworkCore;
 
 namespace Agenda6.Pages.Usuarios
 {
@@ -47,30 +48,55 @@ namespace Agenda6.Pages.Usuarios
 
                 var UsuarioDesdeBD = _contexto.Usuario.FirstOrDefault(acc => acc.NombreUsuario == Usuario.NombreUsuario);
 
-                storedPassword = UsuarioDesdeBD.Password;
+                if (UsuarioDesdeBD == null)
+                {
+                    Mensaje = "Las Credenciales de usuario fallaron";
+                    return RedirectToPage("/Index");
+                }
+                else
+                {
+                   storedPassword = UsuarioDesdeBD.Password;
+                }
+
+                //var user = _context.Users.SingleOrDefault(x => x.Username == model.Username);
+
+                int salt = 12;
+                string passwordHash = BCrypt.Net.BCrypt.HashPassword(Usuario.Password, salt);
+                
+                //bool correctPassword = BCrypt.Net.BCrypt.Verify(storedPassword, passwordHash);
+
+                if (!BCrypt.Net.BCrypt.Verify(Usuario.Password, storedPassword))
+                {
+                    
+                    Mensaje = "Las Credenciales de usuario fallaron";
+                    return RedirectToPage("/Index");
+                }
+                else
+                {
+                    Mensaje = "Usuario ingresado correctamente";
+                    
+
+                }
+                // authentication successful
+
+                
                
                 
                 //int salt = 12;
                 //string passwordHash = BCrypt.Net.BCrypt.HashPassword(enteredpassword, salt);
                 //bool correctPassword = BCrypt.Net.BCrypt.Verify(storedPassword, passwordHash);
 
-                int salt = 12;
-                string passwordHash = BCrypt.Net.BCrypt.HashPassword(Usuario.Password, salt);
-                bool correctPassword = BCrypt.Net.BCrypt.Verify(storedPassword, passwordHash);
+                //int salt = 12;
+                //string passwordHash = BCrypt.Net.BCrypt.HashPassword(Usuario.Password, salt);
+                //bool correctPassword = BCrypt.Net.BCrypt.Verify(storedPassword, passwordHash);
 
                 //bool Verificado = BCrypt.Net.BCrypt.Verify(Usuario.Password, UsuarioDesdeBD.Password);
 
 
-                if (correctPassword)
-                {
-
-                }                  
+                //if (correctPassword)
+                                  
                 
-                else
-                {
-                    Mensaje = "Las Credenciales de usuario fallaron";
-                    return RedirectToPage("Index");
-                }
+                
             }
 
 
