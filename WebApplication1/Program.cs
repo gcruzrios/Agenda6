@@ -9,8 +9,18 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlSer
    builder.Configuration.GetConnectionString("DefaultConnection")));
 ;
 
+
+
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+//builder.Services.AddRazorPages(options =>
+//{
+//    options.Conventions.AuthorizePage("/Home");
+//    options.Conventions.AuthorizeFolder("/Privacy");
+//    options.Conventions.AllowAnonymousToPage("/Usuarios/Login");
+//    options.Conventions.AllowAnonymousToFolder("/Index");
+//});
 
 var app = builder.Build();
 
@@ -28,6 +38,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+
 
 app.MapRazorPages();
 
