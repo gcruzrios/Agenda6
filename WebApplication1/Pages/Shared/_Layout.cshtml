@@ -153,14 +153,21 @@
         //});
 
 
-        //var defaultBase = L.tileLayer.provider('Stamen.TonerLite').addTo(map);
-        var defaultBase = L.tileLayer.provider('OpenStreetMap.HOT').addTo(map);
+        // var defaultBase = L.esri.Vector.vectorBasemapLayer("ArcGIS:Streets", {
+        //    apikey: apiKey
+        //}).addTo(map);
+
+        var defaultBase = L.tileLayer.provider('Esri.WorldStreetMap').addTo(map);
+
+        //var defaultBase = L.tileLayer.provider('OpenStreetMap.HOT').addTo(map);
 
         var baseLayers = {
             'HOT': defaultBase,
+            //'ESRI': L.tileLayer.provider('Esri.WorldStreetMap'),
             'OSM': L.tileLayer.provider('OpenStreetMap'),
             'HOT': L.tileLayer.provider('OpenStreetMap.HOT'),
             'USGS TNM': L.tileLayer.provider('USGSTNM'),
+            'ESRI': L.tileLayer.provider('Esri.WorldStreetMap'),
             'ESRI Imagery': L.tileLayer.provider('Esri.WorldImagery'),
             'ESRI Ocean Basemap': L.tileLayer.provider('Esri.OceanBasemap'),
             'OSM Topo': L.tileLayer.provider('OpenTopoMap')
@@ -184,6 +191,21 @@
         };
 
         //Using a relative url to call layer instead of http
+
+        //var nexrad = L.tileLayer.wms("http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi", {
+        //    layers: 'nexrad-n0r-900913',
+        //    format: 'image/png',
+        //    transparent: true,
+        //    attribution: "Weather data © 2012 IEM Nexrad"
+        //});
+
+        //var andreas = L.tileLayer.wms("http://ags.gis.iastate.edu/arcgisserver/services/Ortho/andreas/ImageServer/WMSServer", {
+        //    layers: '0',
+        //    format: 'image/png',
+        //    transparent: true,
+        //    attribution: "Andreas atlas © Iowa DNR"
+        //}).addTo(map);
+
         var source = L.WMS.source('https://geomapa.tk/geoserver/costarica-geoinn/wms?', options);
         var CantonesLayer = source.getLayer('costarica-geoinn:Cantones_de_Costa_Rica');
         var DistritosLayer = source.getLayer('costarica-geoinn:Distritos_de_Costa_Rica');
