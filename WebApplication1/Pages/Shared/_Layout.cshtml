@@ -206,11 +206,22 @@
         //    attribution: "Andreas atlas © Iowa DNR"
         //}).addTo(map);
 
+
+
+
         var source = L.WMS.source('https://geomapa.tk/geoserver/costarica-geoinn/wms?', options);
+        
+        
+        
         var CantonesLayer = source.getLayer('costarica-geoinn:Cantones_de_Costa_Rica');
         var DistritosLayer = source.getLayer('costarica-geoinn:Distritos_de_Costa_Rica');
         var ProvinciasLayer = source.getLayer('costarica-geoinn:Provincias_de_Costa_Rica');
         var BelenLayer = source.getLayer('costarica-geoinn:Belen_3D_CRTm05');
+
+        var source = L.WMS.source('https://mapas.msj.go.cr/server/services/SIG_SNIT/SIG_SER_SNIT_WMS/MapServer/WMSServer?', options);
+        var BloquesSJ = source.getLayer('Bloques_SJ');
+        var CuerposSJ = source.getLayer('Cuerpos_Agua_SJ')
+        
 
         var source = L.WMS.source('https://geomapa.tk/geoserver/costarica-mep/wms?', options);
         var CEPrivados = source.getLayer('costarica-mep:MEP-CEPrivados');
@@ -228,6 +239,8 @@
                 "Cantones": CantonesLayer,
                 "Distritos": DistritosLayer,
                 "Belen": BelenLayer,
+                "SanJose": BloquesSJ,
+                "Aguas-SanJose": CuerposSJ,
                 
             },
             "MEP": {
